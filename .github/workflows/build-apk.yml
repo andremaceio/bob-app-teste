@@ -45,13 +45,20 @@ jobs:
           libcairo2-dev \
           pkg-config \
           libgstreamer1.0-dev \
-          libgstreamer-plugins-base1.0-dev
+          libgstreamer-plugins-base1.0-dev \
+          openjdk-11-jdk \
+          gradle
           
     - name: Install Python dependencies
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install buildozer
         python3 -m pip install cython==0.29.33
+        
+    - name: Set up Android SDK
+      run: |
+        mkdir -p $HOME/.buildozer/android/platform
+        cd $HOME/.buildozer/android/platform
         
     - name: Initialize Buildozer
       run: |
@@ -77,25 +84,43 @@ jobs:
         sed -i 's/#android.accept_sdk_license =/android.accept_sdk_license = True/' buildozer.spec
         sed -i 's/#android.gradle_dependencies =/android.gradle_dependencies = androidx.webkit:webkit:1.4.0/' buildozer.spec
         
+    - name: Show buildozer.spec
+      run: |
+        cat buildozer.spec
+        echo "Buildozer configuration shown above"
+        
     - name: Build APK
       run: |
         buildozer android debug
         echo "APK build completed"
         
+    - name: List build artifacts
+      run: |
+        echo "Build directory contents:"
+        ls -la .buildozer/ || echo "No .buildozer directory"
+        ls -la bin/ || echo "No bin directory"
+        find . -name "*.apk" || echo "No APK files found"
+        
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: bob-app-apk
-        path: bin/*.apk
+        path: |
+          bin/*.apk
+          .buildozer/bin/*.apk
+        if-no-files-found: warn
         
     - name: Upload buildozer logs
       uses: actions/upload-artifact@v3
       with:
         name: buildozer-logs
         path: .buildozer/logs/
+        if-no-files-found: warn
         
     - name: Show build status
       run: |
         echo "Build completed!"
         echo "Check artifacts for APK file"
-        ls -la bin/ || echo "No APK found in bin directory"
+        echo "Current directory: $(pwd)"
+        echo "Directory contents:"
+        ls -la
