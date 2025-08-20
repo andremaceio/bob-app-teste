@@ -1,0 +1,564 @@
+#:kivy 2.3.0
+
+# ===== ESTILOS DOS BOTÕES =====
+<CondoButton@Button>:
+    background_color: 0.2, 0.6, 0.9, 1  # Azul suave Nubank
+    color: 1, 1, 1, 1  # Texto branco
+    size_hint: 1, None
+    height: 70
+    font_size: 16
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0.15, 0.5, 0.8, 0.3  # Sombra sutil
+        RoundedRectangle:
+            pos: self.x + 2, self.y - 2
+            size: self.width, self.height
+            radius: [15, 15, 15, 15]
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+<ImpactButton@Button>:
+    background_color: 0.4, 0.7, 0.4, 1  # Verde suave Nubank
+    color: 1, 1, 1, 1  # Texto branco
+    size_hint: 1, None
+    height: 70
+    font_size: 16
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0.3, 0.6, 0.3, 0.3  # Sombra sutil
+        RoundedRectangle:
+            pos: self.x + 2, self.y - 2
+            size: self.width, self.height
+            radius: [15, 15, 15, 15]
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+<MatchButton@Button>:
+    background_color: 0.9, 0.3, 0.3, 1  # Vermelho suave Nubank
+    color: 1, 1, 1, 1  # Texto branco
+    size_hint: 1, None
+    height: 70
+    font_size: 16
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0.8, 0.2, 0.2, 0.3  # Sombra sutil
+        RoundedRectangle:
+            pos: self.x + 2, self.y - 2
+            size: self.width, self.height
+            radius: [15, 15, 15, 15]
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+<BusinessButton@Button>:
+    background_color: 0.95, 0.8, 0.2, 1  # Amarelo suave Nubank
+    color: 1, 1, 1, 1  # Texto branco
+    size_hint: 1, None
+    height: 70
+    font_size: 16
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0.85, 0.7, 0.1, 0.3  # Sombra sutil
+        RoundedRectangle:
+            pos: self.x + 2, self.y - 2
+            size: self.width, self.height
+            radius: [15, 15, 15, 15]
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+<BackButton@Button>:
+    background_color: 0.6, 0.6, 0.6, 1  # Cinza suave
+    color: 1, 1, 1, 1  # Texto branco
+    size_hint: None, None
+    size: 100, 50
+    font_size: 14
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0.5, 0.5, 0.5, 0.3  # Sombra sutil
+        RoundedRectangle:
+            pos: self.x + 2, self.y - 2
+            size: self.width, self.height
+            radius: [10, 10, 10, 10]
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10, 10, 10, 10]
+
+<HeaderLabel@Label>:
+    color: 0.2, 0.2, 0.2, 1  # Texto escuro
+    font_size: 24
+    bold: True
+    size_hint: 1, None
+    height: 60
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1  # Fundo branco suave
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10, 10, 10, 10]
+
+# ===== BARRA DE NAVEGAÇÃO INFERIOR =====
+<BottomNavigationBar@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: 1, None
+    height: 80
+    padding: 20, 10
+    spacing: 10
+    background_color: 0.95, 0.95, 0.95, 1
+    
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        RoundedRectangle:
+            pos: self.x, self.y + self.height - 2
+            size: self.width, 2
+            radius: [0, 0, 0, 0]
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20, 20, 0, 0]
+    
+    # Botão Home
+    Button:
+        text: 'Home'
+        size_hint: 1, 1
+        background_color: 0.1, 0.1, 0.1, 1 # Black
+        color: 1, 1, 1, 1
+        font_size: 16
+        bold: True
+        on_release: root.navigate_to('home')
+        canvas.before:
+            Color:
+                rgba: 0.05, 0.05, 0.05, 0.3
+            RoundedRectangle:
+                pos: self.x + 2, self.y - 2
+                size: self.width, self.height
+                radius: [15, 15, 15, 15]
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15, 15, 15, 15]
+    
+    # Botão Impact
+    Button:
+        text: 'Impact'
+        size_hint: 1, 1
+        background_color: 0.4, 0.7, 0.4, 1
+        color: 1, 1, 1, 1
+        font_size: 16
+        bold: True
+        on_release: root.navigate_to('impact')
+        canvas.before:
+            Color:
+                rgba: 0.3, 0.6, 0.3, 0.3
+            RoundedRectangle:
+                pos: self.x + 2, self.y - 2
+                size: self.width, self.height
+                radius: [15, 15, 15, 15]
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15, 15, 15, 15]
+
+    # Botão Kondo (centralizado, menor)
+    Button:
+        text: 'Kondo'
+        size_hint: None, None
+        size: 60, 60
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5} # This pos_hint will be overridden by BoxLayout
+        background_color: 0.2, 0.6, 0.9, 1
+        color: 1, 1, 1, 1
+        font_size: 14
+        bold: True
+        on_release: root.navigate_to('condo')
+        canvas.before:
+            Color:
+                rgba: 0.15, 0.5, 0.8, 0.3
+            RoundedRectangle:
+                pos: self.x + 2, self.y - 2
+                size: self.width, self.height
+                radius: [30, 30, 30, 30]
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [30, 30, 30, 30]
+    
+    # Botão Match
+    Button:
+        text: 'Match'
+        size_hint: 1, 1
+        background_color: 0.9, 0.3, 0.3, 1
+        color: 1, 1, 1, 1
+        font_size: 16
+        bold: True
+        on_release: root.navigate_to('match')
+        canvas.before:
+            Color:
+                rgba: 0.8, 0.2, 0.2, 0.3
+            RoundedRectangle:
+                pos: self.x + 2, self.y - 2
+                size: self.width, self.height
+                radius: [15, 15, 15, 15]
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15, 15, 15, 15]
+    
+    # Botão Business
+    Button:
+        text: 'Business'
+        size_hint: 1, 1
+        background_color: 0.95, 0.8, 0.2, 1
+        color: 1, 1, 1, 1
+        font_size: 16
+        bold: True
+        on_release: root.navigate_to('business')
+        canvas.before:
+            Color:
+                rgba: 0.85, 0.7, 0.1, 0.3
+            RoundedRectangle:
+                pos: self.x + 2, self.y - 2
+                size: self.width, self.height
+                radius: [15, 15, 15, 15]
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [15, 15, 15, 15]
+
+# ===== TELAS =====
+<HomeScreen>:
+    BoxLayout: # Main content container
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        # Header com logo e título
+        BoxLayout:
+            size_hint: 1, None
+            height: 80
+            spacing: 20
+            
+            # Logo (4 quadrados)
+            BoxLayout:
+                size_hint: None, None
+                size: 60, 60
+                spacing: 2
+                
+                # Quadrado 1
+                Widget:
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.6, 0.9, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [8, 8, 8, 8]
+                
+                # Quadrado 2
+                Widget:
+                    canvas.before:
+                        Color:
+                            rgba: 0.4, 0.7, 0.4, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [8, 8, 8, 8]
+                
+                # Quadrado 3
+                Widget:
+                    canvas.before:
+                        Color:
+                            rgba: 0.9, 0.3, 0.3, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [8, 8, 8, 8]
+                
+                # Quadrado 4
+                Widget:
+                    canvas.before:
+                        Color:
+                            rgba: 0.95, 0.8, 0.2, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [8, 8, 8, 8]
+            
+            # Título
+            HeaderLabel:
+                text: 'bob app'
+                halign: 'left'
+                valign: 'middle'
+        
+        # Grid principal 2x2
+        GridLayout:
+            cols: 2
+            spacing: 20
+            size_hint: 1, None
+            height: 200
+            
+            # Botão Match (vermelho)
+            MatchButton:
+                text: 'Match'
+                on_release: root.manager.current = 'match'
+            
+            # Botão Condo (azul)
+            CondoButton:
+                text: 'Condo'
+                on_release: root.manager.current = 'condo'
+            
+            # Botão Impact (verde)
+            ImpactButton:
+                text: 'Impact'
+                on_release: root.manager.current = 'impact'
+            
+            # Botão Business (amarelo)
+            BusinessButton:
+                text: 'Business'
+                on_release: root.manager.current = 'business'
+        
+        # Seção de notícias
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, None
+            height: 120
+            spacing: 10
+            Label:
+                text: 'News & Updates'
+                font_size: 18
+                bold: True
+                color: 0.3, 0.3, 0.3, 1
+                size_hint: 1, None
+                height: 30
+            ScrollView:
+                Label:
+                    text: '• Nova funcionalidade de Match disponível\n• Atualizações no sistema de Condo\n• Melhorias na seção Impact\n• Novos recursos Business em breve'
+                    color: 0.5, 0.5, 0.5, 1
+                    size_hint: 1, None
+                    height: 80
+                    text_size: self.width, None
+                    halign: 'left'
+                    valign: 'top'
+        
+        # Barra de navegação inferior
+        BottomNavigationBar:
+            id: bottom_nav
+
+<CondoScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        # Header
+        BoxLayout:
+            size_hint: 1, None
+            height: 60
+            spacing: 20
+            
+            HeaderLabel:
+                text: 'Condo'
+                halign: 'left'
+                valign: 'middle'
+            
+            BackButton:
+                text: 'Voltar'
+                on_release: root.manager.current = 'home'
+        
+        # Lista de botões
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            
+            CondoButton:
+                text: 'Abrir link 1'
+                on_release: root.open_future_link('condo', 'link1')
+            
+            CondoButton:
+                text: 'Abrir link 2'
+                on_release: root.open_future_link('condo', 'link2')
+            
+            CondoButton:
+                text: 'Abrir link 3'
+                on_release: root.open_future_link('condo', 'link3')
+            
+            CondoButton:
+                text: 'Abrir link 4'
+                on_release: root.open_future_link('condo', 'link4')
+        
+        # Barra de navegação inferior
+        BottomNavigationBar:
+            id: bottom_nav
+
+<ImpactScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        # Header
+        BoxLayout:
+            size_hint: 1, None
+            height: 60
+            spacing: 20
+            
+            HeaderLabel:
+                text: 'Impact'
+                halign: 'left'
+                valign: 'middle'
+            
+            BackButton:
+                text: 'Voltar'
+                on_release: root.manager.current = 'home'
+        
+        # Lista de botões
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            
+            ImpactButton:
+                text: 'Abrir link 1'
+                on_release: root.open_future_link('impact', 'link1')
+            
+            ImpactButton:
+                text: 'Abrir link 2'
+                on_release: root.open_future_link('impact', 'link2')
+            
+            ImpactButton:
+                text: 'Abrir link 3'
+                on_release: root.open_future_link('impact', 'link3')
+            
+            ImpactButton:
+                text: 'Abrir link 4'
+                on_release: root.open_future_link('impact', 'link4')
+        
+        # Barra de navegação inferior
+        BottomNavigationBar:
+            id: bottom_nav
+
+<MatchScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        # Header
+        BoxLayout:
+            size_hint: 1, None
+            height: 60
+            spacing: 20
+            
+            HeaderLabel:
+                text: 'Match'
+                halign: 'left'
+                valign: 'middle'
+            
+            BackButton:
+                text: 'Voltar'
+                on_release: root.manager.current = 'home'
+        
+        # Lista de botões
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            
+            MatchButton:
+                text: 'Abrir link 1'
+                on_release: root.open_future_link('match', 'link1')
+            
+            MatchButton:
+                text: 'Abrir link 2'
+                on_release: root.open_future_link('match', 'link2')
+            
+            MatchButton:
+                text: 'Abrir link 3'
+                on_release: root.open_future_link('match', 'link3')
+            
+            MatchButton:
+                text: 'Abrir link 4'
+                on_release: root.open_future_link('match', 'link4')
+        
+        # Barra de navegação inferior
+        BottomNavigationBar:
+            id: bottom_nav
+
+<BusinessScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        # Header
+        BoxLayout:
+            size_hint: 1, None
+            height: 60
+            spacing: 20
+            
+            HeaderLabel:
+                text: 'Business'
+                halign: 'left'
+                valign: 'middle'
+            
+            BackButton:
+                text: 'Voltar'
+                on_release: root.manager.current = 'home'
+        
+        # Lista de botões
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 15
+            
+            BusinessButton:
+                text: 'Abrir link 1'
+                on_release: root.open_future_link('business', 'link1')
+            
+            BusinessButton:
+                text: 'Abrir link 2'
+                on_release: root.open_future_link('business', 'link2')
+            
+            BusinessButton:
+                text: 'Abrir link 3'
+                on_release: root.open_future_link('business', 'link3')
+            
+            BusinessButton:
+                text: 'Abrir link 4'
+                on_release: root.open_future_link('business', 'link4')
+        
+        # Barra de navegação inferior
+        BottomNavigationBar:
+            id: bottom_nav

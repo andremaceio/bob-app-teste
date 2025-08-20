@@ -1,0 +1,101 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          python3-pip \
+          build-essential \
+          git \
+          python3 \
+          python3-dev \
+          ffmpeg \
+          libsdl2-dev \
+          libsdl2-image-dev \
+          libsdl2-mixer-dev \
+          libsdl2-ttf-dev \
+          libportmidi-dev \
+          libswscale-dev \
+          libavformat-dev \
+          libavcodec-dev \
+          zlib1g-dev \
+          libgstreamer1.0 \
+          gstreamer1.0-plugins-{base,good} \
+          libgirepository1.0-dev \
+          libcairo2-dev \
+          pkg-config \
+          libgstreamer1.0-dev \
+          libgstreamer-plugins-base1.0-dev
+          
+    - name: Install Python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install buildozer
+        python3 -m pip install cython==0.29.33
+        
+    - name: Initialize Buildozer
+      run: |
+        buildozer init
+        echo "Buildozer initialized"
+        
+    - name: Configure Buildozer
+      run: |
+        # Update buildozer.spec with our app details
+        sed -i 's/title = myapp/title = bob app/' buildozer.spec
+        sed -i 's/package.name = myapp/package.name = bobapp/' buildozer.spec
+        sed -i 's/package.domain = org.test/package.domain = org.bobapp/' buildozer.spec
+        sed -i 's/version = 0.1/version = 1.0/' buildozer.spec
+        sed -i 's/requirements = python3,kivy/requirements = python3,kivy,pillow/' buildozer.spec
+        sed -i 's/#android.permissions =/android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE/' buildozer.spec
+        sed -i 's/#android.api =/android.api = 31/' buildozer.spec
+        sed -i 's/#android.minapi =/android.minapi = 21/' buildozer.spec
+        sed -i 's/#android.sdk =/android.sdk = 31/' buildozer.spec
+        sed -i 's/#android.ndk =/android.ndk = 23b/' buildozer.spec
+        sed -i 's/#android.arch =/android.arch = arm64-v8a/' buildozer.spec
+        sed -i 's/#android.allow_backup =/android.allow_backup = True/' buildozer.spec
+        sed -i 's/#android.logcat_filters =/android.logcat_filters = *:S python:D/' buildozer.spec
+        sed -i 's/#android.accept_sdk_license =/android.accept_sdk_license = True/' buildozer.spec
+        sed -i 's/#android.gradle_dependencies =/android.gradle_dependencies = androidx.webkit:webkit:1.4.0/' buildozer.spec
+        
+    - name: Build APK
+      run: |
+        buildozer android debug
+        echo "APK build completed"
+        
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: bob-app-apk
+        path: bin/*.apk
+        
+    - name: Upload buildozer logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: buildozer-logs
+        path: .buildozer/logs/
+        
+    - name: Show build status
+      run: |
+        echo "Build completed!"
+        echo "Check artifacts for APK file"
+        ls -la bin/ || echo "No APK found in bin directory"
