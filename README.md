@@ -9,6 +9,7 @@ Uma aplicação Kivy moderna com 5 telas, navegação fluida e design inspirado 
 ✅ **Design responsivo** com estética Nubank  
 ✅ **GitHub Actions configurado** para build automático do APK  
 ✅ **Todas as dependências instaladas** e configuradas  
+✅ **Máquina Virtual Linux configurada** para build local  
 
 ## 📱 Funcionalidades
 
@@ -52,6 +53,38 @@ configurar_ambiente.bat
 python main.py
 ```
 
+## 📱 Geração do APK
+
+### 🎯 **Opções Disponíveis:**
+
+#### 1. **GitHub Actions (Recomendado - Automático)**
+- ✅ **Configurado e funcionando**
+- APK gerado automaticamente a cada push
+- Sem necessidade de configuração local
+
+#### 2. **Máquina Virtual Linux (Local - Completo)**
+- 🖥️ **Configurado e documentado**
+- Controle total do processo de build
+- Ideal para desenvolvimento contínuo
+- Scripts de instalação automatizados
+
+#### 3. **WSL (Windows Subsystem for Linux)**
+- ⚠️ **Instalado, requer configuração adicional**
+- Alternativa para builds manuais
+
+### 🚀 **Como Usar a VM Linux:**
+
+1. **Baixar e instalar VirtualBox**
+2. **Criar VM Ubuntu** seguindo `CONFIGURAR_VM_VIRTUALBOX.md`
+3. **Executar script automático**: `instalar_buildozer_vm.sh`
+4. **Gerar APK**: `build-apk`
+
+**Arquivos de configuração incluídos:**
+- `BUILD_VM_LINUX.md` - Guia completo
+- `CONFIGURAR_VM_VIRTUALBOX.md` - Configuração da VM
+- `instalar_buildozer_vm.sh` - Script de instalação automática
+- `buildozer_vm.spec` - Configuração otimizada do Buildozer
+
 ## 📁 Estrutura do Projeto
 
 ```
@@ -63,6 +96,10 @@ BobTeste/
 ├── .github/workflows/      # CI/CD automático
 ├── configurar_ambiente.bat # Script de configuração Windows
 ├── configurar_ambiente.ps1 # Script de configuração PowerShell
+├── BUILD_VM_LINUX.md       # Guia para VM Linux
+├── CONFIGURAR_VM_VIRTUALBOX.md # Configuração VirtualBox
+├── instalar_buildozer_vm.sh # Script de instalação VM
+├── buildozer_vm.spec       # Configuração otimizada VM
 └── INSTALACOES_REALIZADAS.md # Documentação das instalações
 ```
 
@@ -71,22 +108,13 @@ BobTeste/
 ### Scripts de Configuração
 - **`configurar_ambiente.bat`**: Para Windows (CMD)
 - **`configurar_ambiente.ps1`**: Para PowerShell
+- **`instalar_buildozer_vm.sh`**: Para VM Linux (Ubuntu)
 
 Estes scripts configuram automaticamente:
 - JAVA_HOME
 - GRADLE_HOME  
 - PATH
 - Verificam todas as versões instaladas
-
-## 📱 Geração do APK
-
-O APK é gerado automaticamente via **GitHub Actions** sempre que houver um push para o branch main.
-
-### Status do Build
-- ✅ Workflow configurado
-- ✅ Dependências do sistema incluídas
-- ✅ Java JDK e Gradle configurados
-- ✅ Build automático ativado
 
 ## 🎨 Design
 
@@ -102,12 +130,14 @@ O APK é gerado automaticamente via **GitHub Actions** sempre que houver um push
 - Kivy 2.x
 - Windows 10/11 (para desenvolvimento local)
 - GitHub (para CI/CD e geração do APK)
+- VirtualBox (para VM Linux - opcional)
 
 ## 🔗 Links Úteis
 
 - **Repositório**: https://github.com/andremaceio/bob-app-teste.git
 - **Documentação Kivy**: https://kivy.org/
 - **Buildozer**: https://buildozer.readthedocs.io/
+- **VirtualBox**: https://www.virtualbox.org/
 
 ## 📅 Atualizações
 
@@ -116,6 +146,8 @@ O APK é gerado automaticamente via **GitHub Actions** sempre que houver um push
 - ✅ Ambiente configurado
 - ✅ Scripts de configuração criados
 - ✅ Documentação atualizada
+- ✅ Máquina Virtual Linux configurada
+- ✅ Scripts de instalação automatizados
 
 ---
 
