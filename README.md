@@ -1,176 +1,122 @@
-# bob app - Aplicação Kivy
+# bob app - Aplicação Kivy Completa
 
-Uma aplicação móvel desenvolvida em Python/Kivy com 3 telas e navegação por ScreenManager.
+Uma aplicação Kivy moderna com 5 telas, navegação fluida e design inspirado no Nubank.
 
-## 🏗️ Arquitetura
+## 🚀 Status do Projeto
 
-- **main.py**: Entrypoint da aplicação, classes das telas e lógica principal
-- **ui.kv**: Layout e estilos em linguagem KV
-- **links.py**: Dicionário de links para as diferentes seções
-- **requirements.txt**: Dependências do projeto
+✅ **Aplicativo funcionando perfeitamente** no Windows  
+✅ **5 telas implementadas** com navegação completa  
+✅ **Design responsivo** com estética Nubank  
+✅ **GitHub Actions configurado** para build automático do APK  
+✅ **Todas as dependências instaladas** e configuradas  
 
 ## 📱 Funcionalidades
 
-### 1. HomeScreen (Tela Principal)
-- Grid 2x2 com botões azuis (Condo) e verdes (Impact)
-- Navegação para telas secundárias
-- Espaço reservado para botões futuros
+- **HomeScreen**: Tela inicial com botões principais
+- **CondoScreen**: Seção Condo com botões azuis
+- **ImpactScreen**: Seção Impact com botões verdes  
+- **MatchScreen**: Seção Match com botões vermelhos
+- **BusinessScreen**: Seção Business com botões amarelos
+- **Navegação inferior**: Barra de navegação com 5 botões
+- **Design Nubank**: Cores suaves, bordas arredondadas, sombras sutis
 
-### 2. CondoScreen
-- Lista de botões azuis para links de condomínio
-- Botão "Voltar" para Home
-- Função `open_future_link()` para abrir URLs
+## 🛠️ Instalações Realizadas
 
-### 3. ImpactScreen
-- Lista de botões verdes para links de impacto
-- Botão "Voltar" para Home
-- Função `open_future_link()` para abrir URLs
+### ✅ Python e Kivy
+- Python 3.13.7
+- Kivy 2.3.1
+- Todas as dependências Kivy
 
-## 🚀 Instalação e Execução
+### ✅ Java e Gradle
+- Java JDK 21.0.8
+- Gradle 8.5
+- Variáveis de ambiente configuradas
 
-### Pré-requisitos
-- Python 3.10 ou superior
-- pip (gerenciador de pacotes Python)
+### ✅ Ferramentas de Build
+- Buildozer 1.5.0
+- WSL 2.5.10 (para futuras compilações Linux)
 
-### Windows
+## 🚀 Como Executar
+
+### 1. Configurar Ambiente (Recomendado)
 ```bash
-# 1. Clone ou baixe o projeto
-# 2. Abra o PowerShell na pasta do projeto
-cd C:\caminho\para\BobTeste
+# Windows Batch
+configurar_ambiente.bat
 
-# 3. Instale as dependências
-pip install -r requirements.txt
+# PowerShell
+.\configurar_ambiente.ps1
+```
 
-# 4. Execute a aplicação
+### 2. Executar Aplicativo
+```bash
 python main.py
-```
-
-### macOS/Linux
-```bash
-# 1. Clone ou baixe o projeto
-# 2. Abra o terminal na pasta do projeto
-cd /caminho/para/BobTeste
-
-# 3. Instale as dependências
-pip3 install -r requirements.txt
-
-# 4. Execute a aplicação
-python3 main.py
-```
-
-### Solução de Problemas
-
-**Erro: "No module named 'kivy'"**
-```bash
-pip install kivy>=2.3.0
-```
-
-**Erro de dependências no Windows:**
-```bash
-pip install --upgrade pip setuptools wheel
-pip install kivy[base] kivy_examples
-```
-
-**Erro no macOS:**
-```bash
-brew install pkg-config sdl2 sdl2_image sdl2_ttf sdl2_mixer
-pip3 install kivy
-```
-
-## 🔧 Personalização
-
-### Adicionando Novos Links
-
-1. **Edite o arquivo `links.py`:**
-```python
-LINKS = {
-    "condo": {
-        "link1": "https://exemplo.com/condo/link1",
-        "novo_link": "https://exemplo.com/novo"  # ← Adicione aqui
-    },
-    "impact": {
-        "link1": "https://exemplo.com/impact/link1",
-        "novo_link": "https://exemplo.com/novo"  # ← Adicione aqui
-    }
-}
-```
-
-2. **Adicione o botão no arquivo `ui.kv`:**
-```kv
-# Na CondoScreen ou ImpactScreen
-CondoButton:  # ou ImpactButton
-    text: 'Novo Link'
-    on_press: root.open_condo_link('novo_link')  # ou open_impact_link
-```
-
-### Modificando Cores
-
-**Cores atuais:**
-- **Condo (Azul)**: `#1E88E5` (rgba(0.117647, 0.533333, 0.898039, 1))
-- **Impact (Verde)**: `#43A047` (rgba(0.262745, 0.627451, 0.278431, 1))
-
-**Para alterar, edite `ui.kv`:**
-```kv
-<CondoButton@Button>:
-    background_color: 0.5, 0.2, 0.8, 1  # Nova cor (R, G, B, A)
-```
-
-### Adicionando Novas Telas
-
-1. **Crie a classe no `main.py`:**
-```python
-class NovaTela(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.name = 'nova_tela'
-```
-
-2. **Adicione o layout no `ui.kv`:**
-```kv
-<NovaTela>:
-    BoxLayout:
-        # Seu layout aqui
-```
-
-3. **Registre no ScreenManager:**
-```python
-sm.add_widget(NovaTela())
 ```
 
 ## 📁 Estrutura do Projeto
 
 ```
 BobTeste/
-├── main.py              # Entrypoint e lógica principal
-├── ui.kv                # Layout e estilos
-├── links.py             # Dicionário de links
-├── requirements.txt     # Dependências
-└── README.md           # Este arquivo
+├── main.py                 # Aplicação principal
+├── ui.kv                   # Interface do usuário
+├── links.py                # Sistema de links
+├── buildozer.spec          # Configuração para Android
+├── .github/workflows/      # CI/CD automático
+├── configurar_ambiente.bat # Script de configuração Windows
+├── configurar_ambiente.ps1 # Script de configuração PowerShell
+└── INSTALACOES_REALIZADAS.md # Documentação das instalações
 ```
 
-## 🎨 Estilo e Design
+## 🔧 Configuração Automática
 
-- **Layout responsivo** usando BoxLayout, GridLayout e AnchorLayout
-- **Cores consistentes** com paleta definida
-- **Padding e spacing** para melhor usabilidade
-- **Tipografia clara** com tamanhos de fonte apropriados
-- **Navegação intuitiva** com botões de retorno
+### Scripts de Configuração
+- **`configurar_ambiente.bat`**: Para Windows (CMD)
+- **`configurar_ambiente.ps1`**: Para PowerShell
 
-## 🔗 Funcionalidades Futuras
+Estes scripts configuram automaticamente:
+- JAVA_HOME
+- GRADLE_HOME  
+- PATH
+- Verificam todas as versões instaladas
 
-A função `open_future_link()` está preparada para:
-- Abrir URLs em navegador
-- Navegar para telas específicas
-- Executar ações personalizadas
-- Integrar com APIs externas
+## 📱 Geração do APK
 
-## 📞 Suporte
+O APK é gerado automaticamente via **GitHub Actions** sempre que houver um push para o branch main.
 
-Para dúvidas ou problemas:
-1. Verifique se o Python e Kivy estão instalados corretamente
-2. Consulte a documentação oficial do Kivy: https://kivy.org/
-3. Verifique os logs no terminal para mensagens de erro
+### Status do Build
+- ✅ Workflow configurado
+- ✅ Dependências do sistema incluídas
+- ✅ Java JDK e Gradle configurados
+- ✅ Build automático ativado
 
-## 📄 Licença
+## 🎨 Design
 
-Este projeto é fornecido como exemplo educacional. Sinta-se livre para modificar e distribuir conforme necessário.
+- **Cores Condo**: Azul suave (#1E88E5)
+- **Cores Impact**: Verde suave (#43A047)  
+- **Cores Match**: Vermelho suave
+- **Cores Business**: Amarelo suave
+- **Estilo**: Bordas arredondadas, sombras sutis, tipografia clara
+
+## 📋 Requisitos
+
+- Python 3.10+
+- Kivy 2.x
+- Windows 10/11 (para desenvolvimento local)
+- GitHub (para CI/CD e geração do APK)
+
+## 🔗 Links Úteis
+
+- **Repositório**: https://github.com/andremaceio/bob-app-teste.git
+- **Documentação Kivy**: https://kivy.org/
+- **Buildozer**: https://buildozer.readthedocs.io/
+
+## 📅 Atualizações
+
+**20 de Agosto de 2025**
+- ✅ Todas as instalações concluídas
+- ✅ Ambiente configurado
+- ✅ Scripts de configuração criados
+- ✅ Documentação atualizada
+
+---
+
+*Desenvolvido com ❤️ usando Kivy e Python*
